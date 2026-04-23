@@ -1,0 +1,229 @@
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body, #root { width: 100%; height: 100%; overflow: hidden; }
+body { font-family: 'DM Sans', sans-serif; background: #0a0f0a; color: #e8f5e9; }
+::-webkit-scrollbar { width: 4px; background: rgba(255,255,255,.05); }
+::-webkit-scrollbar-thumb { background: rgba(86,171,47,.4); border-radius: 2px; }
+
+/* ── FONTS ── */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;700&family=Chakra+Petch:wght@400;600;700&display=swap');
+
+/* ── CSS VARS ── */
+:root {
+  --green:    #56ab2f;
+  --green2:   #a8e063;
+  --red:      #FF4D4D;
+  --yellow:   #FFB800;
+  --blue:     #4D79FF;
+  --purple:   #C84BFF;
+  --teal:     #00C9A7;
+  --dark:     #0a0f0a;
+  --dark2:    #111811;
+  --dark3:    #1a2e1a;
+  --glass:    rgba(10,20,10,.75);
+  --border:   rgba(86,171,47,.18);
+}
+
+/* ── KEYFRAMES ── */
+
+@keyframes fadeIn       { from{opacity:0}              to{opacity:1} }
+@keyframes fadeInUp     { from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:none} }
+@keyframes fadeInDown   { from{opacity:0;transform:translateY(-40px)} to{opacity:1;transform:none} }
+@keyframes fadeInLeft   { from{opacity:0;transform:translateX(-60px)} to{opacity:1;transform:none} }
+@keyframes fadeInRight  { from{opacity:0;transform:translateX(60px)}  to{opacity:1;transform:none} }
+@keyframes scaleIn      { from{opacity:0;transform:scale(.7)}         to{opacity:1;transform:scale(1)} }
+@keyframes slideUp      { from{transform:translateY(100%)} to{transform:translateY(0)} }
+@keyframes slideDown    { from{transform:translateY(-100%)} to{transform:translateY(0)} }
+
+@keyframes wave1 { 0%,100%{transform:rotate(-15deg)} 50%{transform:rotate(15deg)} }
+@keyframes wave2 { 0%,100%{transform:rotate(10deg)}  50%{transform:rotate(-10deg)} }
+@keyframes peekLeft  { 0%{transform:translateX(-100%);opacity:0} 40%{transform:translateX(0);opacity:1} 80%{transform:translateX(0);opacity:1} 100%{transform:translateX(-120%);opacity:0} }
+@keyframes peekRight { 0%{transform:translateX(100%);opacity:0}  40%{transform:translateX(0);opacity:1} 80%{transform:translateX(0);opacity:1} 100%{transform:translateX(120%);opacity:0} }
+@keyframes bounce       { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+@keyframes pulse        { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.6;transform:scale(.95)} }
+@keyframes spin         { to{transform:rotate(360deg)} }
+@keyframes spinSlow     { to{transform:rotate(360deg)} }
+@keyframes float        { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+@keyframes floatY       { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-6px) rotate(2deg)} }
+@keyframes rideBike     { 0%{transform:translateX(-120vw)} 100%{transform:translateX(0)} }
+@keyframes bikeRide     { 0%,100%{transform:translateY(0)} 25%{transform:translateY(-3px)} 75%{transform:translateY(3px)} }
+@keyframes exhaustPuff  { 0%{opacity:.7;transform:scale(.5) translateX(0)} 100%{opacity:0;transform:scale(2) translateX(-40px)} }
+@keyframes roadDash     { from{transform:translateX(0)} to{transform:translateX(-200px)} }
+@keyframes treeSway     { 0%,100%{transform:rotate(-1deg) translateX(0)} 50%{transform:rotate(1deg) translateX(2px)} }
+@keyframes cloudDrift   { from{transform:translateX(0)} to{transform:translateX(-800px)} }
+@keyframes starTwinkle  { 0%,100%{opacity:.4;transform:scale(1)} 50%{opacity:1;transform:scale(1.3)} }
+@keyframes countUp      { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
+@keyframes shimmer      { 0%{background-position:-400px 0} 100%{background-position:400px 0} }
+@keyframes glowPulse    { 0%,100%{box-shadow:0 0 12px rgba(86,171,47,.3)} 50%{box-shadow:0 0 32px rgba(86,171,47,.7), 0 0 60px rgba(86,171,47,.3)} }
+@keyframes revealBar    { from{width:0} to{width:var(--w)} }
+@keyframes cardFlip     { from{transform:rotateY(90deg);opacity:0} to{transform:rotateY(0);opacity:1} }
+@keyframes popIn        { 0%{transform:scale(0) rotate(-10deg);opacity:0} 70%{transform:scale(1.1) rotate(2deg)} 100%{transform:scale(1) rotate(0);opacity:1} }
+@keyframes sidePopup    { from{opacity:0;transform:translateX(60px) scale(.9)} to{opacity:1;transform:none} }
+@keyframes timerRing    { from{stroke-dashoffset:0} to{stroke-dashoffset:283} }
+@keyframes progressRoad { from{width:0} to{width:100%} }
+@keyframes scanline     { 0%{background-position:0 -100%} 100%{background-position:0 100%} }
+@keyframes typewriter   { from{width:0} to{width:100%} }
+@keyframes blink        { 0%,100%{opacity:1} 50%{opacity:0} }
+@keyframes confetti     { 0%{transform:translateY(-10px) rotate(0deg);opacity:1} 100%{transform:translateY(80px) rotate(720deg);opacity:0} }
+@keyframes wheelSpin    { to{transform:rotate(360deg)} }
+@keyframes roadMove     { from{stroke-dashoffset:0} to{stroke-dashoffset:-60} }
+@keyframes mountainPar  { from{transform:translateX(0)} to{transform:translateX(-5%)} }
+@keyframes bgScroll     { from{background-position:0 0} to{background-position:-400px 0} }
+
+/* ── UTILITY ── */
+.anim-fadeIn     { animation: fadeIn     .6s ease both }
+.anim-fadeInUp   { animation: fadeInUp   .7s ease both }
+.anim-fadeInDown { animation: fadeInDown .7s ease both }
+.anim-fadeInLeft { animation: fadeInLeft .7s ease both }
+.anim-fadeInRight{ animation: fadeInRight .7s ease both }
+.anim-scaleIn    { animation: scaleIn    .5s cubic-bezier(.34,1.56,.64,1) both }
+.anim-popIn      { animation: popIn      .5s cubic-bezier(.34,1.56,.64,1) both }
+.anim-float      { animation: float 3s ease-in-out infinite }
+.anim-bounce     { animation: bounce 2s ease-in-out infinite }
+.anim-pulse      { animation: pulse 2s ease-in-out infinite }
+.anim-spin       { animation: spin 1s linear infinite }
+.anim-spinSlow   { animation: spinSlow 8s linear infinite }
+.anim-glowPulse  { animation: glowPulse 2s ease-in-out infinite }
+
+/* ── GLASS CARD ── */
+.glass {
+  background: rgba(10,25,10,.7);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 20px;
+}
+.glass-strong {
+  background: rgba(5,15,5,.85);
+  border: 1px solid rgba(86,171,47,.3);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 20px;
+}
+
+/* ── ROAD SCENE ── */
+.scene-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #0d1a0d 0%, #1a3a1a 60%, #2d5a27 100%);
+}
+
+/* ── BUTTONS ── */
+.btn-primary {
+  background: linear-gradient(135deg, var(--green), var(--green2));
+  color: #0a1f0a;
+  border: none;
+  border-radius: 50px;
+  padding: .75rem 2rem;
+  font-family: 'Chakra Petch', monospace;
+  font-size: .88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(86,171,47,.4); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--green2);
+  border: 1.5px solid rgba(168,224,99,.4);
+  border-radius: 50px;
+  padding: .75rem 2rem;
+  font-family: 'Chakra Petch', monospace;
+  font-size: .88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .2s;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.btn-ghost:hover { background: rgba(168,224,99,.08); border-color: var(--green2); }
+
+/* ── GRADIENT TEXT ── */
+.grad-text {
+  background: linear-gradient(90deg, var(--green), var(--green2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── PROGRESS BAR ── */
+.progress-bar {
+  height: 3px;
+  background: rgba(86,171,47,.15);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--green), var(--green2));
+  border-radius: 2px;
+  animation: progressRoad 30s linear forwards;
+}
+
+/* ── METRIC PILL ── */
+.metric-pill {
+  background: rgba(86,171,47,.1);
+  border: 1px solid rgba(86,171,47,.25);
+  border-radius: 10px;
+  padding: .6rem 1rem;
+  text-align: center;
+}
+.metric-val {
+  font-family: 'Chakra Petch', monospace;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--green2);
+  display: block;
+}
+.metric-label {
+  font-size: .68rem;
+  color: #6b9f6b;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+/* ── TAG ── */
+.skill-tag {
+  display: inline-block;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 6px;
+  padding: .25rem .65rem;
+  font-size: .73rem;
+  color: #b2dfdb;
+  transition: all .2s;
+}
+.skill-tag:hover {
+  background: rgba(86,171,47,.12);
+  border-color: rgba(86,171,47,.3);
+  color: var(--green2);
+  transform: translateY(-2px);
+}
+
+/* ── SECTION TITLE ── */
+.sec-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 900;
+  line-height: 1.1;
+  color: #e8f5e9;
+}
+
+/* ── TIMER CIRCLE ── */
+.timer-ring { transform: rotate(-90deg); }
+.timer-track { fill: none; stroke: rgba(255,255,255,.08); stroke-width: 3; }
+.timer-fill  { fill: none; stroke: var(--green); stroke-width: 3; stroke-linecap: round;
+               stroke-dasharray: 283; animation: timerRing 30s linear forwards; }
+
+/* ── SCROLLABLE PANEL ── */
+.scroll-panel {
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.scroll-panel::-webkit-scrollbar { width: 3px; }
+.scroll-panel::-webkit-scrollbar-thumb { background: rgba(86,171,47,.3); border-radius: 2px; }
